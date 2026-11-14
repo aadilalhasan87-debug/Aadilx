@@ -1,0 +1,608 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#08090d">
+  <meta name="description" content="Aadil Al Hasan (AADILX), multidisciplinary innovator exploring mechatronics, robotics, artificial intelligence, digital creation and entrepreneurship.">
+  <meta property="og:title" content="Aadil Al Hasan | AADILX">
+  <meta property="og:description" content="Think beyond. Build what's next.">
+  <meta property="og:type" content="website">
+  <title>Aadil Al Hasan — AADILX | The Future Architect</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #08090d;
+      --bg-soft: #0d0f16;
+      --panel: rgba(17, 19, 29, .76);
+      --panel-solid: #11131d;
+      --text: #f4f5f8;
+      --muted: #a0a5b5;
+      --subtle: #707789;
+      --red: #ff3157;
+      --red-soft: rgba(255, 49, 87, .15);
+      --blue: #438cff;
+      --blue-soft: rgba(67, 140, 255, .14);
+      --line: rgba(255,255,255,.105);
+      --display: "Space Grotesk", sans-serif;
+      --body: "Manrope", sans-serif;
+      --mono: "DM Mono", monospace;
+      --container: 1160px;
+      --nav-h: 76px;
+      --ease: cubic-bezier(.2,.75,.25,1);
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 100px; }
+    body { margin: 0; background: var(--bg); color: var(--text); font: 400 16px/1.7 var(--body); overflow-x: hidden; }
+    body.menu-open { overflow: hidden; }
+    a { color: inherit; text-decoration: none; }
+    button { color: inherit; font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    img, svg { display: block; max-width: 100%; }
+    ::selection { background: rgba(255,49,87,.35); color: #fff; }
+    :focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; }
+    .skip-link { position: fixed; top: 10px; left: 10px; z-index: 1000; padding: 10px 14px; background: #fff; color: #08090d; transform: translateY(-150%); }
+    .skip-link:focus { transform: translateY(0); }
+    .noise { position: fixed; inset: 0; z-index: 30; pointer-events: none; opacity: .035; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.92' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E"); }
+    #particle-field { position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: .62; }
+    .page-progress { position: fixed; top: 0; left: 0; z-index: 100; height: 2px; width: 0; background: linear-gradient(90deg,var(--red),var(--blue)); box-shadow: 0 0 14px rgba(255,49,87,.65); }
+    .site-header { position: fixed; inset: 0 0 auto; z-index: 50; height: var(--nav-h); border-bottom: 1px solid transparent; transition: background .35s ease,border-color .35s ease,backdrop-filter .35s ease; }
+    .site-header.scrolled { background: rgba(8,9,13,.82); border-color: var(--line); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); }
+    .nav-shell { width: min(var(--container), calc(100% - 9vw)); height: 100%; margin: auto; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brandmark { display: inline-flex; align-items: center; gap: 10px; font: 700 1.05rem var(--display); letter-spacing: .12em; }
+    .brandmark .mark { display: grid; place-items: center; width: 34px; height: 34px; border: 1px solid rgba(255,49,87,.6); color: var(--red); font-size: .85rem; transform: rotate(45deg); box-shadow: 0 0 22px rgba(255,49,87,.12); }
+    .brandmark .mark span { transform: rotate(-45deg); }
+    .brandmark b { color: var(--red); }
+    .nav-links { display: flex; align-items: center; gap: clamp(16px,2.4vw,30px); list-style: none; margin: 0; padding: 0; }
+    .nav-links a { color: var(--muted); font-size: .78rem; font-weight: 700; letter-spacing: .035em; transition: color .2s ease; }
+    .nav-links a:hover, .nav-links a[aria-current="location"] { color: #fff; }
+    .nav-cta { border: 1px solid rgba(255,49,87,.5); padding: 9px 15px; color: #fff; font-size: .76rem; font-weight: 800; letter-spacing: .04em; transition: background .25s ease,border-color .25s ease; }
+    .nav-cta:hover { background: var(--red-soft); border-color: var(--red); }
+    .menu-toggle { display: none; width: 44px; height: 44px; border: 1px solid var(--line); background: rgba(255,255,255,.03); cursor: pointer; }
+    .menu-toggle span { display: block; width: 18px; height: 1px; margin: 5px auto; background: #fff; transition: transform .25s ease,opacity .25s ease; }
+    .menu-toggle[aria-expanded="true"] span:first-child { transform: translateY(3px) rotate(45deg); }
+    .menu-toggle[aria-expanded="true"] span:last-child { transform: translateY(-3px) rotate(-45deg); }
+    main, footer { position: relative; z-index: 1; }
+    .container { width: min(var(--container), calc(100% - 10vw)); margin-inline: auto; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 10px; color: #ff6a83; font: 500 .7rem var(--mono); letter-spacing: .18em; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 24px; height: 1px; background: var(--red); box-shadow: 0 0 10px var(--red); }
+    .hero { min-height: 100svh; display: grid; align-items: center; padding: calc(var(--nav-h) + 72px) 0 76px; position: relative; isolation: isolate; }
+    .hero::before { content: ""; position: absolute; z-index: -2; width: min(65vw,850px); aspect-ratio: 1; top: 3%; right: -13%; border-radius: 50%; background: radial-gradient(circle,rgba(39,91,190,.16),rgba(39,91,190,.045) 42%,transparent 69%); filter: blur(12px); }
+    .hero-grid { display: grid; grid-template-columns: minmax(0,1.08fr) minmax(310px,.92fr); align-items: center; gap: clamp(36px,7vw,100px); }
+    .hero-copy { position: relative; z-index: 2; }
+    .hero-kicker { display: inline-flex; align-items: center; gap: 9px; border: 1px solid rgba(255,49,87,.35); background: rgba(255,49,87,.055); padding: 7px 12px; color: #ff8297; font: 500 .67rem var(--mono); letter-spacing: .16em; margin-bottom: 26px; }
+    .live-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--red); box-shadow: 0 0 12px var(--red); }
+    h1 { margin: 0; font: 700 clamp(3.35rem,8.1vw,7.6rem)/.91 var(--display); letter-spacing: -.085em; text-transform: uppercase; }
+    h1 .line { display: block; white-space: nowrap; }
+    h1 .gradient { color: transparent; background: linear-gradient(105deg,#fff 8%,#ff9aaa 48%,var(--red) 86%); -webkit-background-clip: text; background-clip: text; }
+    h1 .outline { color: transparent; -webkit-text-stroke: 1px rgba(117,164,255,.85); text-shadow: 0 0 34px rgba(67,140,255,.13); }
+    .hero-role { margin: 26px 0 8px; color: #f0f1f6; font: 600 clamp(1rem,2vw,1.32rem) var(--display); letter-spacing: -.025em; }
+    .hero-role span { color: var(--blue); }
+    .type-line { min-height: 1.8em; margin: 0; color: var(--muted); font-size: .94rem; }
+    .type-line::after { content: ""; display: inline-block; width: 6px; height: 1em; margin-left: 4px; vertical-align: -.12em; background: var(--red); animation: blink 1s steps(1) infinite; }
+    @keyframes blink { 50% { opacity: 0; } }
+    .hero-statement { max-width: 39ch; margin: 25px 0 30px; padding-left: 17px; border-left: 2px solid var(--red); color: #c9ccda; font-size: clamp(.98rem,1.5vw,1.08rem); }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .button { min-height: 48px; display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 0 20px; border: 1px solid var(--line); font-size: .78rem; font-weight: 800; letter-spacing: .025em; transition: transform .25s var(--ease),background .25s ease,border-color .25s ease,box-shadow .25s ease; }
+    .button:hover { transform: translateY(-3px); border-color: rgba(67,140,255,.7); box-shadow: 0 12px 34px rgba(0,0,0,.24),0 0 22px rgba(67,140,255,.12); }
+    .button.primary { background: var(--red); border-color: var(--red); box-shadow: 0 8px 30px rgba(255,49,87,.2); }
+    .button.primary:hover { background: #ff4969; box-shadow: 0 12px 34px rgba(255,49,87,.26); }
+    .button .arrow { font-size: 1.05rem; transition: transform .25s ease; }
+    .button:hover .arrow { transform: translate(3px,-2px); }
+    .hero-art { min-height: 480px; position: relative; display: grid; place-items: center; isolation: isolate; }
+    .art-grid { position: absolute; inset: 5% -5% 0; z-index: -2; opacity: .24; background-image: linear-gradient(rgba(255,255,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.08) 1px,transparent 1px); background-size: 42px 42px; mask-image: radial-gradient(ellipse,black 15%,transparent 72%); }
+    .art-glow { position: absolute; width: 72%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle,rgba(255,49,87,.16),rgba(67,140,255,.09) 42%,transparent 70%); filter: blur(16px); }
+    .orbit { position: absolute; width: 92%; aspect-ratio: 1; border: 1px solid rgba(114,151,220,.18); border-radius: 50%; transform: rotate(-24deg) scaleY(.56); }
+    .orbit::before,.orbit::after { content: ""; position: absolute; border: 1px solid rgba(255,49,87,.23); border-radius: 50%; inset: 12%; transform: rotate(58deg) scaleY(.72); }
+    .orbit::after { inset: 25%; border-color: rgba(67,140,255,.28); transform: rotate(-42deg) scaleY(.8); }
+    .core-card { position: relative; width: min(78%,360px); aspect-ratio: .82; display: flex; flex-direction: column; justify-content: space-between; padding: 24px; border: 1px solid rgba(255,255,255,.16); background: linear-gradient(145deg,rgba(28,31,46,.88),rgba(10,12,19,.78)); box-shadow: 0 28px 90px rgba(0,0,0,.48),inset 0 1px rgba(255,255,255,.08); overflow: hidden; transform: rotate(3deg); }
+    .core-card::before { content: ""; position: absolute; width: 230px; height: 230px; top: 12%; right: -30%; border-radius: 50%; border: 1px solid rgba(67,140,255,.5); box-shadow: 0 0 0 18px rgba(67,140,255,.035),0 0 0 42px rgba(67,140,255,.025),0 0 65px rgba(67,140,255,.14); }
+    .core-card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(120deg,transparent 35%,rgba(255,255,255,.045) 50%,transparent 65%); pointer-events: none; }
+    .card-top,.card-bottom { position: relative; z-index: 1; display: flex; justify-content: space-between; align-items: center; gap: 10px; color: var(--muted); font: 500 .61rem var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+    .card-top span:last-child { color: var(--red); }
+    .monogram { position: relative; z-index: 1; margin: auto 0; font: 700 clamp(6rem,15vw,10rem)/.8 var(--display); letter-spacing: -.13em; color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,.82); text-shadow: 0 0 55px rgba(67,140,255,.2); }
+    .monogram span { color: var(--red); -webkit-text-stroke: 0; }
+    .card-bottom { align-items: end; }
+    .card-bottom strong { color: #fff; font: 600 .82rem var(--display); letter-spacing: .02em; text-transform: none; }
+    .float-label { position: absolute; z-index: 3; padding: 11px 14px; background: rgba(10,12,19,.88); border: 1px solid rgba(255,49,87,.42); box-shadow: 0 12px 40px rgba(0,0,0,.32); color: #fff; font: 500 .68rem var(--mono); letter-spacing: .06em; backdrop-filter: blur(12px); }
+    .float-label.one { left: -2%; top: 21%; animation: drift 6s ease-in-out infinite; }
+    .float-label.two { right: -1%; bottom: 19%; border-color: rgba(67,140,255,.5); animation: drift 7s ease-in-out -2s infinite; }
+    @keyframes drift { 50% { transform: translateY(-12px); } }
+    .hero-foot { display: flex; align-items: center; justify-content: space-between; margin-top: 48px; padding-top: 17px; border-top: 1px solid var(--line); color: var(--subtle); font: 500 .63rem var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+    .scroll-cue { display: inline-flex; align-items: center; gap: 10px; }
+    .scroll-cue::before { content: ""; width: 28px; height: 1px; background: var(--red); }
+    .section { position: relative; padding: clamp(78px,10vw,132px) 0; border-top: 1px solid var(--line); }
+    .section-heading { display: grid; grid-template-columns: minmax(220px,.72fr) minmax(0,1.28fr); gap: clamp(28px,7vw,100px); align-items: start; margin-bottom: 52px; }
+    .section-index { display: block; margin-bottom: 14px; color: var(--red); font: 500 .68rem var(--mono); letter-spacing: .16em; }
+    h2 { margin: 0; font: 700 clamp(1.8rem,3.8vw,3.1rem)/1.08 var(--display); letter-spacing: -.055em; }
+    h2 .accent { color: var(--blue); }
+    .section-intro { max-width: 62ch; margin: 4px 0 0; color: var(--muted); font-size: 1rem; }
+    .about-layout { display: grid; grid-template-columns: minmax(0,1.2fr) minmax(240px,.8fr); gap: 28px; }
+    .glass-panel { border: 1px solid var(--line); background: linear-gradient(145deg,rgba(21,24,35,.86),rgba(12,14,21,.76)); padding: clamp(24px,4vw,40px); box-shadow: 0 20px 60px rgba(0,0,0,.14); }
+    .about-copy p { margin: 0 0 17px; color: #c9ccda; }
+    .about-copy p:last-child { margin-bottom: 0; }
+    .about-aside { display: flex; flex-direction: column; justify-content: space-between; gap: 24px; background: radial-gradient(circle at 100% 0,rgba(67,140,255,.13),transparent 55%),var(--panel); }
+    .aside-label { color: var(--subtle); font: 500 .65rem var(--mono); letter-spacing: .14em; text-transform: uppercase; }
+    .aside-statement { margin: 12px 0 0; font: 600 clamp(1.35rem,2.5vw,2rem)/1.25 var(--display); letter-spacing: -.04em; }
+    .aside-statement em { color: var(--red); font-style: normal; }
+    .micro-line { display: flex; align-items: center; gap: 10px; color: var(--muted); font-size: .76rem; }
+    .micro-line::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 12px var(--blue); }
+    .discipline-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 14px; }
+    .discipline { min-height: 220px; position: relative; overflow: hidden; padding: 25px; border: 1px solid var(--line); background: linear-gradient(145deg,rgba(20,23,34,.88),rgba(11,13,20,.88)); transition: transform .3s var(--ease),border-color .3s ease,background .3s ease; }
+    .discipline:hover { transform: translateY(-6px); border-color: rgba(67,140,255,.42); background: linear-gradient(145deg,rgba(26,30,45,.96),rgba(11,13,20,.92)); }
+    .discipline::after { content: ""; position: absolute; width: 130px; height: 130px; right: -55px; bottom: -65px; border: 1px solid rgba(67,140,255,.22); border-radius: 50%; box-shadow: 0 0 0 15px rgba(67,140,255,.025),0 0 0 32px rgba(67,140,255,.02); transition: transform .4s ease; }
+    .discipline:hover::after { transform: scale(1.18); }
+    .discipline:nth-child(2n)::after { border-color: rgba(255,49,87,.24); }
+    .discipline-number { color: var(--red); font: 500 .68rem var(--mono); }
+    .discipline h3 { margin: 32px 0 9px; font: 600 1.15rem var(--display); letter-spacing: -.025em; }
+    .discipline p { max-width: 34ch; margin: 0; color: var(--muted); font-size: .82rem; }
+    .chip-list { display: flex; flex-wrap: wrap; gap: 9px; margin: 24px 0 0; padding: 0; list-style: none; }
+    .chip-list li { padding: 8px 12px; border: 1px solid var(--line); color: #c4c8d5; background: rgba(255,255,255,.018); font-size: .75rem; transition: border-color .2s ease,color .2s ease,background .2s ease; }
+    .chip-list li:hover { border-color: rgba(255,49,87,.5); color: #fff; background: var(--red-soft); }
+    .callout { margin-top: 24px; padding: 17px 20px; border-left: 2px solid var(--blue); background: linear-gradient(90deg,var(--blue-soft),transparent 78%); color: #cbd2e3; font-size: .88rem; }
+    .callout strong { color: #8dbaff; }
+    .projects-topline { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 30px; }
+    .projects-topline p { max-width: 48ch; margin: 0; color: var(--muted); font-size: .9rem; }
+    .project-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 16px; }
+    .project-card { min-height: 310px; position: relative; display: flex; flex-direction: column; justify-content: space-between; padding: clamp(24px,3.5vw,34px); overflow: hidden; border: 1px solid var(--line); background: linear-gradient(145deg,rgba(20,23,34,.94),rgba(10,12,18,.96)); transition: transform .3s var(--ease),border-color .3s ease,box-shadow .3s ease; }
+    .project-card:hover { transform: translateY(-5px); border-color: rgba(255,255,255,.24); box-shadow: 0 24px 60px rgba(0,0,0,.25); }
+    .project-card::before { content: ""; position: absolute; width: 260px; height: 260px; right: -95px; top: -115px; border-radius: 50%; border: 1px solid rgba(255,49,87,.24); box-shadow: 0 0 0 24px rgba(255,49,87,.025),0 0 0 52px rgba(255,49,87,.018); transition: transform .5s ease; }
+    .project-card:nth-child(even)::before { border-color: rgba(67,140,255,.27); }
+    .project-card:hover::before { transform: scale(1.12) rotate(18deg); }
+    .project-meta { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 12px; color: var(--subtle); font: 500 .65rem var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+    .project-type { color: #ff8297; }
+    .project-card:nth-child(even) .project-type { color: #8dbaff; }
+    .project-main { position: relative; z-index: 1; max-width: 470px; }
+    .project-main h3 { margin: 0 0 12px; font: 700 clamp(1.55rem,3vw,2.25rem)/1.05 var(--display); letter-spacing: -.055em; }
+    .project-main p { margin: 0; color: var(--muted); font-size: .87rem; }
+    .project-bottom { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 28px; }
+    .project-bottom span { color: var(--subtle); font: 500 .64rem var(--mono); letter-spacing: .1em; text-transform: uppercase; }
+    .project-bottom a { display: inline-flex; align-items: center; gap: 8px; color: #fff; font-size: .75rem; font-weight: 800; }
+    .project-bottom a span { color: var(--red); font-size: 1rem; transition: transform .2s ease; }
+    .project-bottom a:hover span { transform: translate(3px,-3px); }
+    .learning-band { display: grid; grid-template-columns: .8fr 1.2fr; gap: 40px; align-items: center; padding: clamp(26px,5vw,48px); border: 1px solid var(--line); background: radial-gradient(circle at 0 100%,rgba(255,49,87,.1),transparent 42%),linear-gradient(120deg,rgba(17,19,29,.96),rgba(10,12,18,.9)); }
+    .learning-band h3 { margin: 0; font: 600 clamp(1.5rem,3vw,2.3rem)/1.12 var(--display); letter-spacing: -.05em; }
+    .learning-band p { margin: 0; color: var(--muted); font-size: .9rem; }
+    .vision { padding: clamp(110px,15vw,190px) 0; text-align: center; overflow: hidden; }
+    .vision::before { content: ""; position: absolute; width: min(75vw,900px); aspect-ratio: 1; left: 50%; top: 50%; transform: translate(-50%,-50%); z-index: -1; background: radial-gradient(circle,rgba(255,49,87,.12),rgba(67,140,255,.055) 38%,transparent 68%); filter: blur(12px); }
+    .vision .eyebrow { justify-content: center; }
+    .vision h2 { max-width: 920px; margin: 26px auto 22px; font-size: clamp(2.3rem,6.2vw,5.6rem); letter-spacing: -.075em; }
+    .vision h2 span { color: var(--red); }
+    .vision-copy { max-width: 62ch; margin: 0 auto; color: var(--muted); font-size: clamp(.9rem,1.4vw,1rem); }
+    .vision .button { margin-top: 32px; }
+    footer { padding: 34px 0 42px; border-top: 1px solid var(--line); background: rgba(7,8,12,.55); }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 22px; }
+    .footer-brand { font: 700 1rem var(--display); letter-spacing: .1em; }
+    .footer-brand b { color: var(--red); }
+    .footer-note { margin: 5px 0 0; color: var(--subtle); font-size: .72rem; }
+    .footer-right { color: var(--subtle); font: 500 .63rem var(--mono); letter-spacing: .08em; text-align: right; }
+    .back-top { position: fixed; z-index: 40; right: 22px; bottom: 22px; width: 44px; height: 44px; display: grid; place-items: center; border: 1px solid var(--line); background: rgba(13,15,22,.85); color: #fff; opacity: 0; pointer-events: none; transform: translateY(10px); transition: opacity .25s ease,transform .25s ease,border-color .25s ease; backdrop-filter: blur(12px); }
+    .back-top.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .back-top:hover { border-color: var(--red); }
+    .reveal { opacity: 0; transform: translateY(26px); transition: opacity .8s var(--ease),transform .8s var(--ease); }
+    .reveal.is-visible { opacity: 1; transform: none; }
+    .delay-1 { transition-delay: .08s; } .delay-2 { transition-delay: .16s; } .delay-3 { transition-delay: .24s; }
+    @media (max-width: 980px) {
+      .nav-links { gap: 15px; }
+      .nav-links a { font-size: .72rem; }
+      .nav-cta { display: none; }
+      .hero-grid { grid-template-columns: minmax(0,1fr) minmax(280px,.82fr); gap: 25px; }
+      .hero-art { min-height: 420px; }
+      .discipline-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+    }
+    @media (max-width: 760px) {
+      :root { --nav-h: 68px; }
+      .nav-shell { width: calc(100% - 40px); }
+      .menu-toggle { display: block; position: relative; z-index: 2; }
+      .nav-links { position: fixed; inset: var(--nav-h) 0 0; display: flex; flex-direction: column; align-items: stretch; justify-content: flex-start; gap: 0; padding: 22px 28px 40px; background: rgba(8,9,13,.97); border-top: 1px solid var(--line); opacity: 0; visibility: hidden; transform: translateY(-8px); transition: opacity .25s ease,visibility .25s ease,transform .25s ease; }
+      .nav-links.open { opacity: 1; visibility: visible; transform: translateY(0); }
+      .nav-links li { border-bottom: 1px solid var(--line); }
+      .nav-links a { display: block; padding: 15px 2px; color: #e5e7ef; font-size: 1rem; }
+      .hero { min-height: auto; padding: calc(var(--nav-h) + 48px) 0 58px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 16px; }
+      .hero-copy { order: 1; }
+      .hero-art { order: 0; min-height: 320px; width: min(100%,440px); margin: 0 auto 12px; }
+      .core-card { width: min(66%,270px); }
+      .monogram { font-size: 7rem; }
+      h1 { font-size: clamp(3.3rem,13vw,5.7rem); }
+      .hero-foot { margin-top: 34px; }
+      .section-heading { grid-template-columns: 1fr; gap: 15px; margin-bottom: 34px; }
+      .about-layout { grid-template-columns: 1fr; }
+      .project-grid { grid-template-columns: 1fr; }
+      .project-card { min-height: 275px; }
+      .learning-band { grid-template-columns: 1fr; gap: 16px; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
+      .footer-right { text-align: left; }
+    }
+    @media (max-width: 480px) {
+      .container { width: calc(100% - 40px); }
+      .hero-art { min-height: 285px; }
+      .float-label.one { left: 0; top: 13%; }
+      .float-label.two { right: 0; bottom: 13%; }
+      .hero-kicker { margin-bottom: 20px; }
+      h1 { font-size: clamp(3rem,13.5vw,4.2rem); }
+      .hero-statement { font-size: .91rem; }
+      .button { width: 100%; }
+      .hero-foot { font-size: .55rem; }
+      .discipline-grid { grid-template-columns: 1fr; }
+      .discipline { min-height: 185px; }
+      .glass-panel { padding: 23px; }
+      .project-card { min-height: 290px; }
+      .back-top { right: 14px; bottom: 14px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *,*::before,*::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+      #particle-field { display: none; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <div class="page-progress" id="page-progress" aria-hidden="true"></div>
+  <canvas id="particle-field" aria-hidden="true"></canvas>
+  <div class="noise" aria-hidden="true"></div>
+
+  <header class="site-header" id="site-header">
+    <nav class="nav-shell" aria-label="Main navigation">
+      <a class="brandmark" href="#top" aria-label="AADILX home"><span class="mark"><span>A</span></span><span>AADIL<b>X</b></span></a>
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="nav-links"><span></span><span></span></button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#disciplines">Expertise</a></li>
+        <li><a href="#innovator">Innovation</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#learning">Learning</a></li>
+        <li><a href="#vision">Vision</a></li>
+      </ul>
+      <a class="nav-cta" href="#projects">EXPLORE WORK ↗</a>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <div class="hero-kicker"><span class="live-dot" aria-hidden="true"></span> A MULTIDISCIPLINARY MINDSET</div>
+            <h1 id="hero-title"><span class="line gradient">Aadil</span><span class="line outline">Al Hasan</span></h1>
+            <p class="hero-role">The Future <span>Architect.</span></p>
+            <p class="type-line" id="type-line" aria-live="polite">Innovator</p>
+            <p class="hero-statement">Think beyond the obvious. Explore what is possible. Build what comes next.</p>
+            <div class="hero-actions">
+              <a class="button primary" href="#projects">Explore my projects <span class="arrow" aria-hidden="true">↗</span></a>
+              <a class="button" href="#about">Discover my journey <span class="arrow" aria-hidden="true">↓</span></a>
+            </div>
+          </div>
+          <div class="hero-art" aria-label="Abstract AADILX identity artwork">
+            <div class="art-grid" aria-hidden="true"></div>
+            <div class="art-glow" aria-hidden="true"></div>
+            <div class="orbit" aria-hidden="true"></div>
+            <div class="core-card">
+              <div class="card-top"><span>Identity / 001</span><span>Online · Creating</span></div>
+              <div class="monogram" aria-hidden="true">A<span>X</span></div>
+              <div class="card-bottom"><div><strong>Aadil Al Hasan</strong><br><span>Ideas into possibility</span></div><span>TN / IN</span></div>
+            </div>
+            <div class="float-label one">✳ &nbsp; THINK DIFFERENTLY</div>
+            <div class="float-label two">BUILD · TEST · EVOLVE</div>
+          </div>
+        </div>
+        <div class="hero-foot"><span>INNOVATION / ENGINEERING / CREATION</span><span class="scroll-cue">SCROLL TO EXPLORE</span></div>
+      </div>
+    </section>
+
+    <section class="section" id="about" aria-labelledby="about-title">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div><span class="section-index">01 / THE PERSON</span><h2 id="about-title">Curiosity is where <span class="accent">it begins.</span></h2></div>
+          <p class="section-intro">I’m Aadil Al Hasan, a young innovator driven by curiosity, creativity and the ambition to transform ideas into meaningful solutions.</p>
+        </div>
+        <div class="about-layout">
+          <div class="glass-panel about-copy reveal">
+            <p>My interests lie at the intersection of engineering, technology, artificial intelligence, business and creative media.</p>
+            <p>I believe innovation begins with a question, grows through experimentation and becomes valuable when it solves a real-world problem.</p>
+            <p>I don’t see myself as someone limited to a single field. I see myself as someone who connects multiple disciplines to create something new.</p>
+          </div>
+          <aside class="glass-panel about-aside reveal delay-1">
+            <div><span class="aside-label">A personal principle</span><p class="aside-statement">Don't just follow technology. Discover <em>what else it can do.</em></p></div>
+            <div class="micro-line">Curious by nature. Driven to create.</div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="disciplines" aria-labelledby="disciplines-title">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div><span class="section-index">02 / THE TOOLKIT</span><h2 id="disciplines-title">Different fields. <span class="accent">One direction.</span></h2></div>
+          <p class="section-intro">I explore the connections between disciplines, learning how ideas move from a sketch to a working system and, eventually, something people can use.</p>
+        </div>
+        <div class="discipline-grid">
+          <article class="discipline reveal"><span class="discipline-number">01 / INNOVATION</span><h3>Problem to possibility</h3><p>Identifying everyday challenges, exploring unconventional approaches and developing practical solution concepts.</p></article>
+          <article class="discipline reveal delay-1"><span class="discipline-number">02 / MECHATRONICS</span><h3>Machines with purpose</h3><p>Combining mechanics, electronics, programming and automation to build interactive machines.</p></article>
+          <article class="discipline reveal delay-2"><span class="discipline-number">03 / ARTIFICIAL INTELLIGENCE</span><h3>Intelligence in action</h3><p>Exploring AI-powered applications, intelligent project-building platforms, AI-assisted problem discovery, smart interfaces, automation, emerging technologies and AI in real-world products. I see AI not simply as a tool, but as a way to expand human capabilities.</p></article>
+          <article class="discipline reveal"><span class="discipline-number">04 / DIGITAL CREATION</span><h3>Ideas into experiences</h3><p>Cinematic editing, documentary production, motion graphics and visual storytelling.</p></article>
+          <article class="discipline reveal delay-1"><span class="discipline-number">05 / WEB DEVELOPMENT</span><h3>Building for the browser</h3><p>Developing skills in HTML, CSS and JavaScript, React interfaces, responsive design, UI/UX, interactive web apps, website deployment and digital product development. My ambition is to build websites and applications that provide genuine value to people and businesses.</p></article>
+          <article class="discipline reveal delay-2"><span class="discipline-number">06 / ENTREPRENEURSHIP</span><h3>Value beyond the idea</h3><p>Learning startup development, product strategy, business models, brand creation, market research and customer experience, while understanding customer problems, validating concepts and building sustainable businesses.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="innovator" aria-labelledby="innovator-title">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div><span class="section-index">03 / THE APPROACH</span><h2 id="innovator-title">Innovation is a <span class="accent">process.</span></h2></div>
+          <p class="section-intro">I enjoy identifying everyday challenges, exploring unconventional approaches and developing concepts that could become practical solutions.</p>
+        </div>
+        <div class="glass-panel reveal">
+          <span class="aside-label">Areas I explore</span>
+          <ul class="chip-list">
+            <li>Real-world problem analysis</li><li>AI-powered solutions</li><li>Smart automation systems</li><li>Human-centred technology</li><li>Product concepts and prototypes</li><li>Ideas with real-world applications</li>
+          </ul>
+          <div class="callout"><strong>Philosophy.</strong> Every problem holds the possibility of an invention, a solution or a business.</div>
+        </div>
+        <div class="section-heading reveal" style="margin-top:76px;margin-bottom:26px">
+          <div><span class="section-index">04 / HARDWARE & SYSTEMS</span><h2>Where mechanics meets <span class="accent">intelligence.</span></h2></div>
+          <p class="section-intro">I’m passionate about combining mechanical engineering, electronics, programming and automation to create machines that interact meaningfully with the world around them.</p>
+        </div>
+        <div class="glass-panel reveal">
+          <span class="aside-label">Mechatronics interests</span>
+          <ul class="chip-list"><li>Arduino and ESP systems</li><li>Robotics and humanoid concepts</li><li>Bluetooth-controlled vehicles</li><li>Sensors and automation</li><li>Servo and motor control</li><li>Embedded systems</li><li>Smart interactive machines</li></ul>
+          <div class="callout"><strong>Current vision.</strong> Build intelligent machines that interact meaningfully with the world around them.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projects" aria-labelledby="projects-title">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div><span class="section-index">05 / SELECTED CONCEPTS</span><h2 id="projects-title">Ideas taking <span class="accent">shape.</span></h2></div>
+          <p class="section-intro">These projects represent different dimensions of my curiosity and creativity. Each is a concept or exploration, with its own problem space and direction.</p>
+        </div>
+        <div class="project-grid">
+          <article class="project-card reveal">
+            <div class="project-meta"><span class="project-type">Innovation platform</span><span>PROJECT / 001</span></div>
+            <div class="project-main"><h3>INNOVATA</h3><p>An innovation-driven concept designed to connect problems, ideas and practical solutions. A platform where people report challenges, explore possible solutions and connect innovation with real-world needs.</p></div>
+            <div class="project-bottom"><span>Problem discovery · Solutions</span><a href="#vision" aria-label="Explore the vision behind Innovata">Explore concept <span>↗</span></a></div>
+          </article>
+          <article class="project-card reveal delay-1">
+            <div class="project-meta"><span class="project-type">Retail robotics</span><span>PROJECT / 002</span></div>
+            <div class="project-main"><h3>ZINTRO</h3><p>A smart welcome and assistance robot concept for retail environments. It helps visitors discover products, locate sections, understand offers and interact with businesses.</p></div>
+            <div class="project-bottom"><span>Human interaction · Robotics</span><a href="#vision" aria-label="Explore the vision behind Zintro">Explore concept <span>↗</span></a></div>
+          </article>
+          <article class="project-card reveal">
+            <div class="project-meta"><span class="project-type">Humanoid robotics</span><span>PROJECT / 003</span></div>
+            <div class="project-main"><h3>MANRO</h3><p>A humanoid robotics exploration focused on voice interaction, movement and intelligent responses.</p></div>
+            <div class="project-bottom"><span>Embedded systems · Motion</span><a href="#vision" aria-label="Explore the vision behind Manro">Explore concept <span>↗</span></a></div>
+          </article>
+          <article class="project-card reveal delay-1">
+            <div class="project-meta"><span class="project-type">Interactive storytelling</span><span>PROJECT / 004</span></div>
+            <div class="project-main"><h3>LUNARIS: THE MOON PROTOCOL</h3><p>A cinematic science-fiction game concept combining artificial intelligence, space exploration, mystery and storytelling.</p></div>
+            <div class="project-bottom"><span>Game concept · Science fiction</span><a href="#vision" aria-label="Explore the vision behind Lunaris">Explore concept <span>↗</span></a></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="creator" aria-labelledby="creator-title">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div><span class="section-index">06 / CREATIVE TECHNOLOGY</span><h2 id="creator-title">Make ideas <span class="accent">visible.</span></h2></div>
+          <p class="section-intro">I enjoy transforming concepts and stories into engaging digital content, with a focus on cinematic presentation, meaningful storytelling and professional visual quality.</p>
+        </div>
+        <div class="learning-band reveal">
+          <h3>From the first frame to the final experience.</h3>
+          <div><p>My creative interests include cinematic video editing, documentary production, visual storytelling, motion graphics, short-form content and sound design.</p><ul class="chip-list"><li>DaVinci Resolve</li><li>OBS</li><li>Canva</li><li>AI-assisted creative tools</li></ul></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="learning" aria-labelledby="learning-title">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div><span class="section-index">07 / ALWAYS IN PROGRESS</span><h2 id="learning-title">Learn the fundamentals. <span class="accent">Build beyond them.</span></h2></div>
+          <p class="section-intro">I aim to understand concepts from their fundamentals before exploring advanced applications. Learning is not a separate part of the journey. It is the engine behind it.</p>
+        </div>
+        <div class="glass-panel reveal">
+          <ul class="chip-list" style="margin-top:0"><li>Physics and applied science</li><li>Mathematics and logic</li><li>Programming</li><li>Mechanical and electrical engineering</li><li>Artificial intelligence</li><li>Business and entrepreneurship</li><li>Communication and storytelling</li></ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="vision" id="vision" aria-labelledby="vision-title">
+      <div class="container reveal">
+        <span class="eyebrow">THE DIRECTION</span>
+        <h2 id="vision-title">I don't want to follow the future. I want to <span>build what comes next.</span></h2>
+        <p class="vision-copy">I want to become a multidisciplinary innovator, a capable engineer and an entrepreneur who builds meaningful technology-driven businesses, turning ideas into real products, useful systems and valuable experiences.</p>
+        <a class="button primary" href="#top">Back to the beginning <span class="arrow" aria-hidden="true">↑</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div><div class="footer-brand">AADIL AL HASAN <b>/</b> AADILX</div><p class="footer-note">The Future Architect. Think Beyond. Build What’s Next.</p></div>
+      <div class="footer-right">CURIOSITY IS THE STARTING POINT.<br>INNOVATION IS THE DIRECTION.</div>
+    </div>
+  </footer>
+  <a class="back-top" id="back-top" href="#top" aria-label="Back to top">↑</a>
+
+  <script>
+    (() => {
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const header = document.getElementById('site-header');
+      const progress = document.getElementById('page-progress');
+      const backTop = document.getElementById('back-top');
+      const menuButton = document.getElementById('menu-toggle');
+      const nav = document.getElementById('nav-links');
+
+      // Compact scroll handler: header state, reading progress and back-to-top control.
+      let scrollQueued = false;
+      const updateScrollUI = () => {
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+        header.classList.toggle('scrolled', scrollTop > 24);
+        backTop.classList.toggle('visible', scrollTop > 600);
+        progress.style.width = `${maxScroll > 0 ? (scrollTop / maxScroll) * 100 : 0}%`;
+        scrollQueued = false;
+      };
+      window.addEventListener('scroll', () => {
+        if (!scrollQueued) {
+          window.requestAnimationFrame(updateScrollUI);
+          scrollQueued = true;
+        }
+      }, { passive: true });
+      updateScrollUI();
+
+      // Accessible mobile navigation.
+      const closeMenu = () => {
+        menuButton.setAttribute('aria-expanded', 'false');
+        menuButton.setAttribute('aria-label', 'Open navigation menu');
+        nav.classList.remove('open');
+        document.body.classList.remove('menu-open');
+      };
+      menuButton.addEventListener('click', () => {
+        const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
+        menuButton.setAttribute('aria-expanded', String(!isOpen));
+        menuButton.setAttribute('aria-label', isOpen ? 'Open navigation menu' : 'Close navigation menu');
+        nav.classList.toggle('open', !isOpen);
+        document.body.classList.toggle('menu-open', !isOpen);
+      });
+      nav.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape') closeMenu();
+      });
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 760) closeMenu();
+      });
+
+      // Rotating role line. It becomes static when reduced motion is requested.
+      const typeLine = document.getElementById('type-line');
+      const roles = ['Innovator', 'Mechatronics Enthusiast', 'Digital Creator', 'Entrepreneur', 'Technology Explorer'];
+      if (reduceMotion) {
+        typeLine.textContent = roles.join('  /  ');
+      } else {
+        let roleIndex = 0, charIndex = 0, deleting = false, timer;
+        const type = () => {
+          const current = roles[roleIndex];
+          typeLine.textContent = current.slice(0, charIndex);
+          if (!deleting && charIndex === current.length) {
+            deleting = true;
+            timer = window.setTimeout(type, 1450);
+            return;
+          }
+          if (deleting && charIndex === 0) {
+            deleting = false;
+            roleIndex = (roleIndex + 1) % roles.length;
+          }
+          charIndex += deleting ? -1 : 1;
+          timer = window.setTimeout(type, deleting ? 34 : 68);
+        };
+        timer = window.setTimeout(type, 500);
+        document.addEventListener('visibilitychange', () => {
+          if (document.hidden) window.clearTimeout(timer);
+          else { window.clearTimeout(timer); timer = window.setTimeout(type, 250); }
+        });
+      }
+
+      // Reveal content as it enters the viewport, with a graceful fallback.
+      const revealItems = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window && !reduceMotion) {
+        const observer = new IntersectionObserver((entries, currentObserver) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              currentObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -35px 0px' });
+        revealItems.forEach(item => observer.observe(item));
+      } else {
+        revealItems.forEach(item => item.classList.add('is-visible'));
+      }
+
+      // Lightweight particle network. It pauses off-screen and caps canvas resolution on high-DPI devices.
+      const canvas = document.getElementById('particle-field');
+      const context = canvas && canvas.getContext ? canvas.getContext('2d', { alpha: true }) : null;
+      if (context && !reduceMotion) {
+        let width = 0, height = 0, particles = [], frame = 0, active = !document.hidden;
+        const particleCount = () => Math.min(54, Math.max(22, Math.floor(window.innerWidth / 25)));
+        const resizeCanvas = () => {
+          const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+          width = window.innerWidth;
+          height = window.innerHeight;
+          canvas.width = Math.floor(width * dpr);
+          canvas.height = Math.floor(height * dpr);
+          canvas.style.width = `${width}px`;
+          canvas.style.height = `${height}px`;
+          context.setTransform(dpr, 0, 0, dpr, 0, 0);
+          particles = Array.from({ length: particleCount() }, (_, index) => ({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            vx: (Math.random() - .5) * .22,
+            vy: (Math.random() - .5) * .22,
+            color: index % 4 === 0 ? '255,49,87' : '67,140,255'
+          }));
+        };
+        const draw = () => {
+          if (!active) return;
+          context.clearRect(0, 0, width, height);
+          for (let i = 0; i < particles.length; i++) {
+            const point = particles[i];
+            point.x += point.vx;
+            point.y += point.vy;
+            if (point.x < 0 || point.x > width) point.vx *= -1;
+            if (point.y < 0 || point.y > height) point.vy *= -1;
+            context.fillStyle = `rgba(${point.color},.7)`;
+            context.fillRect(point.x, point.y, 1.5, 1.5);
+            for (let j = i + 1; j < particles.length; j++) {
+              const other = particles[j];
+              const dx = point.x - other.x;
+              const dy = point.y - other.y;
+              const distanceSquared = dx * dx + dy * dy;
+              const limit = 115 * 115;
+              if (distanceSquared < limit) {
+                context.strokeStyle = `rgba(${point.color},${.11 * (1 - distanceSquared / limit)})`;
+                context.lineWidth = .65;
+                context.beginPath();
+                context.moveTo(point.x, point.y);
+                context.lineTo(other.x, other.y);
+                context.stroke();
+              }
+            }
+          }
+          frame = window.requestAnimationFrame(draw);
+        };
+        const setActive = () => {
+          active = !document.hidden;
+          if (active) {
+            window.cancelAnimationFrame(frame);
+            frame = window.requestAnimationFrame(draw);
+          } else window.cancelAnimationFrame(frame);
+        };
+        resizeCanvas();
+        draw();
+        window.addEventListener('resize', resizeCanvas, { passive: true });
+        document.addEventListener('visibilitychange', setActive);
+      }
+
+      // Keep the current section reflected in navigation for assistive technology.
+      if ('IntersectionObserver' in window) {
+        const sectionObserver = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            nav.querySelectorAll('a').forEach(link => {
+              if (link.getAttribute('href') === `#${entry.target.id}`) link.setAttribute('aria-current', 'location');
+              else link.removeAttribute('aria-current');
+            });
+          });
+        }, { rootMargin: '-35% 0px -55% 0px' });
+        document.querySelectorAll('main section[id]').forEach(section => sectionObserver.observe(section));
+      }
+    })();
+  </script>
+</body>
+</html>
